@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<purchase>
+	<customer id="2"/>
+	<cart>
+		<item class="product">
+			<name>Ballon orange</name>
+			<desc>Un ballon haute qualité avec revêtement PVC - Couleur orange</desc>
+			<ref>BA256DF23</ref>
+			<qty>4</qty>
+			<weight>0.5</weight>
+			<tax>19.6</tax>
+			<discount>0</discount>
+			<pricenotax>20</pricenotax>
+		</item>
+		<item class="product">
+			<name>Souris Labtec</name>
+			<desc>Souris filaire à pointeur IR, 3 boutons + molette de défilement - Couleur grise</desc>
+			<ref>SRM4587LAB</ref>
+			<qty>1</qty>
+			<weight>2</weight>
+			<tax>19.6</tax>
+			<discount>0</discount>
+			<pricenotax>15</pricenotax>
+		</item>
+	</cart>
+</purchase>

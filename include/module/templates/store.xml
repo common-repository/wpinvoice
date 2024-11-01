@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<store>
+	<info>
+		<name>BTP Direct</name>
+		<taxnumber>FR46842523</taxnumber>
+		<email>btpdirect@mail.com</email>
+		<type>SARL</type>
+		<capital>10000</capital>
+		<acceptcheck>1</acceptcheck>
+	</info>
+	<address>
+		<street>5 bis, rue du pont de Lattes</street>
+		<suburb></suburb>
+		<city>Montpellier</city>
+		<postcode>34000</postcode>
+		<state></state>
+		<country>France</country>
+		<phone>0425659856</phone>
+		<telecopy>0456873215</telecopy>
+	</address>
+	<bank>
+		<frbank>45678</frbank>
+		<frreg>98765</frreg>
+		<fraccount>65487</fraccount>
+		<frkey>23</frkey>
+		<iban>123456789</iban>
+		<bic>321564897</bic>
+	</bank>
+</store>
+

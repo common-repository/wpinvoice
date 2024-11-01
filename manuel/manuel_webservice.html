@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+
+	<head>
+		<title>Manuel d'utilisation du Web Service de Eoinvoice</title>
+	</head>
+
+	<body>
+	
+	EOinvoice</br>
+	Web-service - Mode d&rsquo;emploi</br></br>
+
+	Premi&egrave;re utilisation par un magasin:</br></br>
+
+		&deg; Se rendre dans le menu Web-service</br>
+		&deg; Entrer l&rsquo;URL du fichier XML de d&eacute;finition du magasin</br></br></br>
+		
+		IL DOIT IMPERATIVEMENT SE NOMMER "store.xml" !</br></br>
+	
+	Le fichier XML se pr&eacute;sente comme suit:</br>
+	
+	<textarea cols="100" rows="40" disabled>
+<?xml version="1.0"?>
+<store>
+	<info>
+		<name>BTP Direct</name>
+		<taxnumber>FR46842523</taxnumber>
+		<email>btpdirect@mail.com</email>
+		<type>SARL</type>
+		<capital>10000</capital>
+		<acceptcheck>1</acceptcheck>
+	</info>
+	<address>
+		<street>5 bis, rue du pont de Lattes</street>
+		<suburb/>
+		<city>Montpellier</city>
+		<postcode>34000</postcode>
+		<state/>
+		<country>France</country>
+		<phone>0425659856</phone>
+		<telecopy>0456873215</telecopy>
+	</address>
+	<bank>
+		<frbank>45678</frbank>
+		<frreg>98765</frreg>
+		<fraccount>65487</fraccount>
+		<frkey>23</frkey>
+		<iban>123456789</iban>
+		<bic>321564897</bic>
+	</bank>
+</store>
+	</textarea>
+	
+	</br></br>
+
+	Au terme de cette proc&eacute;dure le magasin est enregistr&eacute; en base de donn&eacute;es et deux informations sont fournies &agrave; l'utilisateur:</br></br>
+
+		&deg; Un identifiant unique (uniqid)</br>
+		&deg; Une cl&eacute; de cryptage</br></br>
+		
+	<img src="img/etape1.png" alt="etape_1"></br>
+
+	Ces informations sont &agrave; noter et &agrave; conserver !</br>
+
+	D&egrave;s lors, le magasin peut transf&eacute;rer ses commandes sous forme d'un fichier XML construit de cette mani&egrave;re:</br>
+
+	<textarea cols="100" rows="40" disabled>
+<?xml version="1.0"?>
+<purchase>
+	<customer id="2"/>
+	<cart>
+		<item class="product">
+			<name>Ballon orange</name>
+			<desc>Un ballon haute qualit&eacute; avec rev&ecirc;tement PVC - Couleur orange</desc>
+			<ref>BA256DF23</ref>
+			<qty>4</qty>
+			<weight>0.5</weight>
+			<tax>19.6</tax>
+			<discount>0</discount>
+			<pricenotax>20</pricenotax>
+		</item>
+		<item class="product">
+			<name>Souris Labtec</name>
+			<desc>Souris filaire &agrave; pointeur IR, 3 boutons + molette de d&eacute;filement - Couleur grise</desc>
+			<ref>SRM4587LAB</ref>
+			<qty>1</qty>
+			<weight>2</weight>
+			<tax>19.6</tax>
+			<discount>0</discount>
+			<pricenotax>15</pricenotax>
+		</item>
+	</cart>
+</purchase>
+	</textarea>
+	
+	</br></br>
+
+	Ce fichier doit &ecirc;tre imp&eacute;rativement nomm&eacute; de la mani&egrave;re suivante:<br/>
+
+	[uniqid].xml<br/>
+
+	o&ugrave; [uniqid] doit &ecirc;tre remplac&eacute; par l'identifiant unique du magasin, fourni &agrave; l'&eacute;tape pr&eacute;c&eacute;dente.<br/>
+
+	<img src="img/etape2.png" alt="etape_2"></br>
+	
+	----------------------------------------------------------------<br/>
+
+	Une fois le fichier correctement nomm&eacute;, il est n&eacute;cessaire de le crypter;<br/>
+	La fonction suivante permet d'effectuer ce traitement:<br/>
+
+	----------------------------------------------------------------<br/>
+
+	<textarea cols="120" rows="40" disabled>
+function crypt_purchase($file, $file_output, $key)
+{
+	// Lecture du fichier
+	$huge_string = file_get_contents($file,'r');
+
+	// Choix d'un algo, mode (couple)
+	$algo = 'blowfish';    // ou la constante php MCRYPT_BLOWFISH
+	$mode = 'nofb';        // ou la constante php MCRYPT_MODE_NOFB
+
+	// Calcul des longueurs max de la cl&eacute; et de l'IV
+	$key_size = mcrypt_module_get_algo_key_size($algo); // 56
+	$iv_size  = mcrypt_get_iv_size($algo, $mode); // 8
+
+	// Cr&eacute;ation d'un IV al&eacute;atoire de la bonne longueur
+	// N'importe quoi du moment qu'il est de la bonne longueur
+	$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+
+	// Choix d'une cl&eacute; secr&egrave;te de cryptage/d&eacute;cryptage et mise &agrave; longueur si trop longue
+	$key = substr($key, 0, $key_size);
+
+	// On encrypte
+	$huge_string_crypt  = mcrypt_encrypt($algo, $key, $huge_string, $mode, $iv);
+	
+	// On cr&eacute;e un fichier de sortie
+	$file_crypt = fopen($file_output, 'w+');
+	// On met le IV au d&eacute;but du fichier ($iv_size caract&egrave;res) puis le reste du fichier, cript&eacute;
+	fputs($file_crypt, $iv.$huge_string_crypt);
+	// On ferme le fichier
+	fclose($file_crypt);
+}
+	</textarea>
+	</br>
+	
+	L'argument $key doit &ecirc;tre remplac&eacute; par la cl&eacute; fournie lors de l'inscription du magasin.<br/>
+
+	----------------------------------------------------------------<br/><br/>
+
+	Derni&egrave;re &eacute;tape:<br/><br/>
+
+		&deg; Se rendre dans le menu Web-service<br/>
+		&deg; Entrer l&rsquo;URL du fichier XML de d&eacute;finition de la commande<br/><br/>
+
+	Une facture a &eacute;t&eacute; g&eacute;n&eacute;r&eacute;e !<br/>
+	</body>
+
+</html>
+
+

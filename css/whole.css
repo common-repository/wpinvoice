@@ -1,0 +1,154 @@
+.errori{
+border: red 2px solid !important;
+}
+
+#eoinvoice_html_export_page{
+width:800px;
+margin-left:auto;
+margin-right:auto;
+}
+
+#eoinvoice_html_title{
+text-align:center;
+border:#C6C6C6 1px solid;
+padding:10px;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+}
+
+#eoinvoice_html_logo{
+float:right;
+width:300px;
+height:150px;
+border:#C6C6C6 1px solid;
+padding:10px;
+}
+
+#eoinvoice_html_store{
+float:left;
+width:300px;
+height:150px;
+border:#C6C6C6 1px solid;
+padding:10px;
+}
+
+#eoinvoice_html_refdate{
+margin-top:280px;
+}
+#eoinvoice_html_refdate table{
+border-collapse:collapse;
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+#eoinvoice_html_refdate thead tr{
+border:#C6C6C6 1px solid;
+text-align:center;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+}
+#eoinvoice_html_refdate thead td{
+padding: 5px;
+}
+#eoinvoice_html_refdate tr{
+border-bottom:#C6C6C6 1px solid;
+}
+#eoinvoice_html_refdate td{
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+
+#eoinvoice_html_customer{
+margin-top:30px;
+float:right;
+width:400px;
+height:150px;
+border:#C6C6C6 1px solid;
+padding:10px;
+}
+
+#eoinvoice_html_rows{
+float:right;
+margin-top: 150px;
+}
+#eoinvoice_html_rows table{
+margin-left:auto;
+margin-right:auto;
+width:800px;
+border-collapse:collapse;
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+#eoinvoice_html_rows thead tr{
+border:#C6C6C6 1px solid;
+text-align:center;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+}
+#eoinvoice_html_rows thead td{
+padding: 5px;
+}
+#eoinvoice_html_rows tr{
+border-bottom:#C6C6C6 1px solid;
+}
+#eoinvoice_html_rows td{
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+
+#eoinvoice_html_total{
+float:right;
+margin-top: 10px;
+}
+#eoinvoice_html_total table{
+margin-left:auto;
+margin-right:auto;
+width:400px;
+border-collapse:collapse;
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+#eoinvoice_html_total thead tr{
+border: #C6C6C6 1px solid;
+text-align: center;
+background: #D9D9D9;
+background: -moz-linear-gradient(bottom,#D7D7D7,#E4E4E4);
+background: -webkit-gradient(linear,left bottom,left top,from(#D7D7D7),to(#E4E4E4));
+}
+#eoinvoice_html_total thead td{
+padding: 5px;
+}
+#eoinvoice_html_total tr{
+border-bottom: #C6C6C6 1px solid;
+}
+#eoinvoice_html_total td{
+border:#C6C6C6 1px solid;
+padding: 2px;
+}
+
+input.add_something{
+height: 20px;
+width: 20px;
+color: white !important;
+font-size: 20px !important;
+text-align: center;
+background: #5BB965 !important;
+background: -moz-linear-gradient(bottom,#00850D,#5BB965) !important;
+background: -webkit-gradient(linear,left bottom,left top,from(#00850D),to(#5BB965)) !important;
+border : 1px solid #00850D !important;
+}
+
+input.remove_something{
+height: 20px;
+width: 20px;
+color: white !important;
+font-size: 18px !important;
+text-align: center;
+background: #F76F62 !important;
+background: -moz-linear-gradient(bottom,#D34638,#F76F62) !important;
+background: -webkit-gradient(linear,left bottom,left top,from(#D34638),to(#F76F62)) !important;
+border : 1px solid #D34638 !important;
+}
+
